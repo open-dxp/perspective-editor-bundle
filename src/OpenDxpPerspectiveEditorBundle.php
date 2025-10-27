@@ -1,23 +1,23 @@
 <?php
 
 /**
- * Pimcore
+ * OpenDXP
  *
- * This source file is available under two different licenses:
- * - GNU General Public License version 3 (GPLv3)
- * - Pimcore Commercial License (PCL)
+ * This source file is licensed under the GNU General Public License version 3 (GPLv3).
+ *
  * Full copyright and license information is available in
  * LICENSE.md which is distributed with this source code.
  *
- *  @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.org)
- *  @license    http://www.pimcore.org/license     GPLv3 and PCL
+ * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\PerspectiveEditorBundle;
 
 use OpenDxp\Bundle\AdminBundle\OpenDxpAdminBundle;
-use OpenDxp\Extension\Bundle\AbstractOpenDxpBundle;
 use OpenDxp\Bundle\PerspectiveEditorBundle\DependencyInjection\OpenDxpPerspectiveEditorExtension;
+use OpenDxp\Extension\Bundle\AbstractOpenDxpBundle;
 use OpenDxp\Extension\Bundle\Installer\InstallerInterface;
 use OpenDxp\Extension\Bundle\OpenDxpBundleAdminClassicInterface;
 use OpenDxp\Extension\Bundle\Traits\BundleAdminClassicTrait;
@@ -32,6 +32,7 @@ class OpenDxpPerspectiveEditorBundle extends AbstractOpenDxpBundle implements Op
     use PackageVersionTrait;
 
     const PERMISSION_PERSPECTIVE_EDITOR = 'perspective_editor';
+
     const PERMISSION_PERSPECTIVE_EDITOR_VIEW_EDIT = 'perspective_editor_view_edit';
 
     public function getContainerExtension(): ?ExtensionInterface
@@ -63,7 +64,7 @@ class OpenDxpPerspectiveEditorBundle extends AbstractOpenDxpBundle implements Op
     public function getCssPaths(): array
     {
         return [
-            '/bundles/opendxpperspectiveeditor/css/icons.css'
+            '/bundles/opendxpperspectiveeditor/css/icons.css',
         ];
     }
 
