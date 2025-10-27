@@ -17,8 +17,5 @@ namespace OpenDxp\Bundle\PerspectiveEditorBundle\Event\ElementTree;
 
 final class IconEvents
 {
-    /**
-     * @var string
-     */
-    public const string ADD_ELEMENT_TREE_ICON = 'opendxp.perspectiveEditor.elementTreeIcon.add';
+    public const ADD_ELEMENT_TREE_ICON = 'opendxp.perspectiveEditor.elementTreeIcon.add';
 }
