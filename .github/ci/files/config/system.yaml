@@ -4,8 +4,9 @@ opendxp:
         path_variable: ''
         domain: opendxp-test.dev
         redirect_to_maindomain: false
-        language: en
-        valid_languages: 'en,de'
+        valid_languages:
+            - en
+            - de
         fallback_languages:
             en: ''
             de: ''
@@ -43,10 +44,10 @@ opendxp:
     email:
         sender:
             name: opendxp
-            email: opendxp@example.com
+            email: contact@example.com
         return:
             name: opendxp
-            email: opendxp@example.com
+            email: contact@example.com
         debug:
             email_addresses: ''
     applicationlog:
