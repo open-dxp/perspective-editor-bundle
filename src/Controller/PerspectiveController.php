@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Pimcore
+ * OpenDXP
  *
- * This source file is available under two different licenses:
- * - GNU General Public License version 3 (GPLv3)
- * - Pimcore Commercial License (PCL)
+ * This source file is licensed under the GNU General Public License version 3 (GPLv3).
+ *
  * Full copyright and license information is available in
  * LICENSE.md which is distributed with this source code.
  *
- *  @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.org)
- *  @license    http://www.pimcore.org/license     GPLv3 and PCL
+ * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\PerspectiveEditorBundle\Controller;
@@ -87,8 +87,9 @@ class PerspectiveController extends UserAwareController
 
         $ret = [
             'success' => true,
-            'error' => null
+            'error' => null,
         ];
+
         try {
             $treeStore = json_decode($request->request->getString('data'), true);
             $deletedRecords = json_decode($request->request->getString('deletedRecords'), true);
@@ -112,8 +113,9 @@ class PerspectiveController extends UserAwareController
 
         $ret = [
             'success' => true,
-            'error' => null
+            'error' => null,
         ];
+
         try {
             $treeStore = json_decode($request->request->getString('data'), true);
             $deletedRecords = json_decode($request->request->getString('deletedRecords'), true);
@@ -185,7 +187,7 @@ class PerspectiveController extends UserAwareController
                     'writeable' => $perspectiveConfig['writeable'],
                     'config' => [
                         'iconCls' => $perspectiveConfig['iconCls'] ?? null,
-                        'icon' => $perspectiveConfig['icon'] ?? null
+                        'icon' => $perspectiveConfig['icon'] ?? null,
                     ],
                 ],
                 [
@@ -211,7 +213,7 @@ class PerspectiveController extends UserAwareController
                     'allowDrop' => true,
                     'cls' => $disabledClass,
                     'children' => $rightElementTrees,
-                    'writeable' => $perspectiveConfig['writeable']
+                    'writeable' => $perspectiveConfig['writeable'],
                 ],
                 [
                     'id' => $treeHelper->createUuid(),
@@ -237,9 +239,9 @@ class PerspectiveController extends UserAwareController
                     'allowDrop' => false,
                     'cls' => $disabledClass,
                     'writeable' => $perspectiveConfig['writeable'],
-                    'config' => $perspectiveConfig['toolbar'] ?? []
-                ]
-            ]
+                    'config' => $perspectiveConfig['toolbar'] ?? [],
+                ],
+            ],
         ];
     }
 
@@ -283,7 +285,7 @@ class PerspectiveController extends UserAwareController
             'documents' => 'opendxp_icon_document',
             'assets' => 'opendxp_icon_asset',
             'objects' => 'opendxp_icon_object',
-            'customview' => 'opendxp_icon_custom_views'
+            'customview' => 'opendxp_icon_custom_views',
         ];
         $elementTreeIconAddEvent = new IconAddEvent($elementTreeIcons);
         $this->eventDispatcher->dispatch($elementTreeIconAddEvent, IconEvents::ADD_ELEMENT_TREE_ICON);
@@ -311,7 +313,7 @@ class PerspectiveController extends UserAwareController
                     'iconCls' => 'opendxp_icon_welcome',
                     'cls' => $disabledClass,
                     'writeable' => $config['writeable'],
-                    'config' => array_merge($dashboardConfig, ['name' => $dashboardName])
+                    'config' => array_merge($dashboardConfig, ['name' => $dashboardName]),
                 ];
             }
         }
@@ -337,7 +339,7 @@ class PerspectiveController extends UserAwareController
             'leaf' => true,
             'allowDrag' => true,
             'writeable' => $viewConfig['writeable'],
-            'config' => $viewConfig ?? $this->getViewDefaultConfig($viewName)
+            'config' => $viewConfig ?? $this->getViewDefaultConfig($viewName),
         ];
 
         return $entry;
@@ -351,7 +353,7 @@ class PerspectiveController extends UserAwareController
             'position' => 'left',
             'rootfolder' => '/',
             'showroot' => false,
-            'sort' => 0
+            'sort' => 0,
         ];
     }
 }
