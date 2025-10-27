@@ -1,0 +1,22 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+        bind:
+            $configDirectory: "%kernel.project_dir%/config/opendxp/"
+
+    OpenDxp\Bundle\PerspectiveEditorBundle\Controller\:
+        resource: '../../Controller'
+        public: true
+        tags: ['controller.service_arguments']
+
+    OpenDxp\Bundle\PerspectiveEditorBundle\Services\:
+        resource: '../../Services'
+
+
+    OpenDxp\Bundle\PerspectiveEditorBundle\Installer:
+        public: true
+        arguments:
+            # fetch the bundle via expression language
+            $bundle: "@=service('kernel').getBundle('OpenDxpPerspectiveEditorBundle')"
