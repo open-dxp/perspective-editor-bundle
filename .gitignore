@@ -24,6 +24,9 @@ nbproject
 /web/bundles/
 /web/var/
 
+# PHP-CS-Fixer
+/.php_cs
+.php-cs-fixer.cache
 
 # composer
 /composer.lock
