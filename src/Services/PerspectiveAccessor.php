@@ -29,7 +29,7 @@ class PerspectiveAccessor extends AbstractAccessor
         $configuration = [];
 
         foreach ($treeStore['children'] as $child) {
-            $name = htmlspecialchars($child['name']);
+            $name = htmlspecialchars((string) $child['name']);
             $configuration[$name] = [];
             $configuration[$name]['elementTree'] = [];
             foreach ($child['children'] as $index => $element) {
@@ -40,7 +40,7 @@ class PerspectiveAccessor extends AbstractAccessor
                         foreach ($element['children'] as $sortIndex => $grandchild) {
                             if (isset($grandchild['config']['treeContextMenu'])) {
                                 foreach (array_keys($grandchild['config']['treeContextMenu']) as $contextMenuEntry) {
-                                    if (substr($grandchild['config']['type'], 0, strlen($contextMenuEntry)) != $contextMenuEntry) {
+                                    if (!str_starts_with((string) $grandchild['config']['type'], (string) $contextMenuEntry)) {
                                         unset($grandchild['config']['treeContextMenu'][$contextMenuEntry]);
                                     }
                                 }
@@ -59,7 +59,7 @@ class PerspectiveAccessor extends AbstractAccessor
                         foreach ($element['children'] as $sortIndex => $grandchild) {
                             if (isset($grandchild['config']['treeContextMenu'])) {
                                 foreach (array_keys($grandchild['config']['treeContextMenu']) as $contextMenuEntry) {
-                                    if (substr($grandchild['config']['type'], 0, strlen($contextMenuEntry)) != $contextMenuEntry) {
+                                    if (!str_starts_with((string) $grandchild['config']['type'], (string) $contextMenuEntry)) {
                                         unset($grandchild['config']['treeContextMenu'][$contextMenuEntry]);
                                     }
                                 }
@@ -114,6 +114,7 @@ class PerspectiveAccessor extends AbstractAccessor
      *
      * @throws \Exception
      */
+    #[\Override]
     public function writeConfiguration($treeStore, ?array $deletedRecords)
     {
         $configuration = $this->convertTreeStoreToConfiguration($treeStore);

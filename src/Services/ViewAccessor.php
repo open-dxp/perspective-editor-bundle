@@ -48,12 +48,12 @@ class ViewAccessor extends AbstractAccessor
         if (isset($treeStore['children'])) {
             foreach ($treeStore['children'] as $child) {
                 if (array_key_exists('name', $child['config'])) {
-                    $child['config']['name'] = htmlspecialchars($child['config']['name']);
+                    $child['config']['name'] = htmlspecialchars((string) $child['config']['name']);
                 }
 
                 if (!empty($child['config']['treeContextMenu'])) {
                     foreach (array_keys($child['config']['treeContextMenu']) as $contextMenuEntry) {
-                        if (substr($child['config']['treetype'], 0, strlen($contextMenuEntry)) != $contextMenuEntry) {
+                        if (!str_starts_with((string) $child['config']['treetype'], (string) $contextMenuEntry)) {
                             unset($child['config']['treeContextMenu'][$contextMenuEntry]);
                         }
                     }
@@ -103,6 +103,7 @@ class ViewAccessor extends AbstractAccessor
      *
      * @throws \Exception
      */
+    #[\Override]
     public function writeConfiguration($treeStore, ?array $deletedRecords)
     {
         $configuration = $this->convertTreeStoreToConfiguration($treeStore);

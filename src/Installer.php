@@ -20,11 +20,13 @@ use OpenDxp\Model\User\Permission\Definition;
 
 class Installer extends SettingsStoreAwareInstaller
 {
+    #[\Override]
     public function needsReloadAfterInstall(): bool
     {
         return true;
     }
 
+    #[\Override]
     public function install(): void
     {
         Definition::create(OpenDxpPerspectiveEditorBundle::PERMISSION_PERSPECTIVE_EDITOR);

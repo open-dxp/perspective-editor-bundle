@@ -35,6 +35,7 @@ class OpenDxpPerspectiveEditorBundle extends AbstractOpenDxpBundle implements Op
 
     const PERMISSION_PERSPECTIVE_EDITOR_VIEW_EDIT = 'perspective_editor_view_edit';
 
+    #[\Override]
     public function getContainerExtension(): ?ExtensionInterface
     {
         if (null === $this->extension) {
