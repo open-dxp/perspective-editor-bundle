@@ -15,16 +15,16 @@
 
 namespace OpenDxp\Bundle\PerspectiveEditorBundle\Services;
 
+use OpenDxp\Bundle\AdminBundle\Perspective\Config;
+
 class PerspectiveAccessor extends AbstractAccessor
 {
     protected $filename = 'perspectives.php';
 
     /**
      * @param array $treeStore
-     *
-     * @return array
      */
-    protected function convertTreeStoreToConfiguration($treeStore)
+    protected function convertTreeStoreToConfiguration($treeStore): array
     {
         $configuration = [];
 
@@ -33,9 +33,9 @@ class PerspectiveAccessor extends AbstractAccessor
             $configuration[$name] = [];
             $configuration[$name]['elementTree'] = [];
             foreach ($child['children'] as $index => $element) {
-                if ($element['type'] == 'icon') {
+                if ($element['type'] === 'icon') {
                     $configuration[$name] = array_merge($configuration[$name], $element['config']);
-                } elseif ($element['type'] == 'elementTree') {
+                } elseif ($element['type'] === 'elementTree') {
                     if (isset($element['children'])) {
                         foreach ($element['children'] as $sortIndex => $grandchild) {
                             if (isset($grandchild['config']['treeContextMenu'])) {
@@ -54,7 +54,7 @@ class PerspectiveAccessor extends AbstractAccessor
                             $configuration[$name]['elementTree'][] = $grandchild['config'];
                         }
                     }
-                } elseif ($element['type'] == 'elementTreeRight') {
+                } elseif ($element['type'] === 'elementTreeRight') {
                     if (isset($element['children'])) {
                         foreach ($element['children'] as $sortIndex => $grandchild) {
                             if (isset($grandchild['config']['treeContextMenu'])) {
@@ -72,7 +72,7 @@ class PerspectiveAccessor extends AbstractAccessor
                             $configuration[$name]['elementTree'][] = $grandchild['config'];
                         }
                     }
-                } elseif ($element['type'] == 'dashboard') {
+                } elseif ($element['type'] === 'dashboard') {
                     if (count($element['config']) > 0 || isset($element['children'])) {
                         $configuration[$name]['dashboards'] = [];
                     }
@@ -86,7 +86,7 @@ class PerspectiveAccessor extends AbstractAccessor
                             $configuration[$name]['dashboards']['predefined'][$dashboardDefinition['config']['name'] ?? '']['positions'] = $dashboardDefinition['config']['positions'];
                         }
                     }
-                } elseif ($element['type'] == 'toolbar') {
+                } elseif ($element['type'] === 'toolbar') {
                     if (count($element['config']) > 0 || isset($element['children'])) {
                         $configuration[$name]['toolbar'] = $element['config'];
                     }
@@ -99,26 +99,19 @@ class PerspectiveAccessor extends AbstractAccessor
 
     public function getConfiguration(): array
     {
-        $config = \OpenDxp\Bundle\AdminBundle\Perspective\Config::get();
-        if (is_array($config)) {
-            return $config;
-        } else {
-            return $config->toArray();
-        }
+        return Config::get();
     }
 
     /**
      * @param array $treeStore
      *
-     * @return void
-     *
      * @throws \Exception
      */
     #[\Override]
-    public function writeConfiguration($treeStore, ?array $deletedRecords)
+    public function writeConfiguration($treeStore, ?array $deletedRecords): void
     {
         $configuration = $this->convertTreeStoreToConfiguration($treeStore);
         $this->validateConfig('perspectives', $configuration);
-        \OpenDxp\Bundle\AdminBundle\Perspective\Config::save($configuration, $deletedRecords);
+        Config::save($configuration, $deletedRecords);
     }
 }
