@@ -8,4 +8,5 @@ parameters:
     excludePaths:
         - src/Tests/*
 includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
     - phpstan-baseline.neon

@@ -1,49 +1,49 @@
 {
-  "name": "open-dxp/perspective-editor-bundle",
-  "license": "GPL-3.0+",
-  "type": "opendxp-bundle",
-  "description": "OpenDXP Perspective Editor",
-  "config": {
-    "sort-packages": true,
-    "preferred-install": {
-      "open-dxp/opendxp": "source",
-      "*": "dist"
-    }
-  },
-  "prefer-stable": true,
-  "minimum-stability": "dev",
-  "require": {
-    "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
-    "open-dxp/admin-bundle": "^1.0",
-    "open-dxp/opendxp": "^1.0",
-    "symfony/http-foundation": "^7.3"
-  },
-  "require-dev": {
-    "phpstan/phpstan": "^1.2",
-    "phpunit/phpunit": "^9.3",
-    "codeception/codeception": "^4.1.12 || ^5.0.3",
-    "codeception/module-symfony":"^1.6.0 || ^3.1.0",
-    "codeception/phpunit-wrapper": "^9",
-    "codeception/module-asserts": "^2"
-  },
-  "autoload": {
-    "psr-4": {
-      "OpenDxp\\Bundle\\PerspectiveEditorBundle\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "OpenDxp\\Bundle\\PerspectiveEditorBundle\\Tests\\": "tests"
+    "name": "open-dxp/perspective-editor-bundle",
+    "license": "GPL-3.0+",
+    "type": "opendxp-bundle",
+    "description": "OpenDXP Perspective Editor",
+    "config": {
+        "sort-packages": true,
+        "preferred-install": {
+            "open-dxp/opendxp": "source",
+            "*": "dist"
+        }
     },
-    "files": [
-      "kernel/Kernel.php"
-    ]
-  },
-  "extra": {
-    "opendxp": {
-      "bundles": [
-        "OpenDxp\\Bundle\\PerspectiveEditorBundle\\OpenDxpPerspectiveEditorBundle"
-      ]
+    "require": {
+        "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+        "open-dxp/admin-bundle": "^1.0",
+        "open-dxp/opendxp": "^1.0",
+        "symfony/http-foundation": "^7.4"
+    },
+    "require-dev": {
+        "symfony/dotenv": "^7.4",
+        "symfony/runtime": "^7.4",
+        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0.14",
+        "codeception/codeception": "^5.3.5",
+        "codeception/module-symfony": "^3.1.1",
+        "codeception/module-asserts": "^2"
+    },
+    "autoload": {
+        "psr-4": {
+            "OpenDxp\\Bundle\\PerspectiveEditorBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OpenDxp\\Bundle\\PerspectiveEditorBundle\\Tests\\": "tests"
+        },
+        "files": [
+            "kernel/Kernel.php"
+        ]
+    },
+    "extra": {
+        "opendxp": {
+            "bundles": [
+                "OpenDxp\\Bundle\\PerspectiveEditorBundle\\OpenDxpPerspectiveEditorBundle"
+            ]
+        }
     }
-  }
 }
