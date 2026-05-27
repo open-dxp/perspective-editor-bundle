@@ -9,7 +9,7 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
@@ -17,16 +17,17 @@ namespace OpenDxp\Bundle\PerspectiveEditorBundle;
 
 use OpenDxp\Extension\Bundle\Installer\SettingsStoreAwareInstaller;
 use OpenDxp\Model\User\Permission\Definition;
+use Override;
 
 class Installer extends SettingsStoreAwareInstaller
 {
-    #[\Override]
+    #[Override]
     public function needsReloadAfterInstall(): bool
     {
         return true;
     }
 
-    #[\Override]
+    #[Override]
     public function install(): void
     {
         Definition::create(OpenDxpPerspectiveEditorBundle::PERMISSION_PERSPECTIVE_EDITOR);

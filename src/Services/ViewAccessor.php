@@ -9,11 +9,15 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\PerspectiveEditorBundle\Services;
+
+use Exception;
+use InvalidArgumentException;
+use Override;
 
 class ViewAccessor extends AbstractAccessor
 {
@@ -90,7 +94,7 @@ class ViewAccessor extends AbstractAccessor
         foreach ($configuration as $viewConfiguration) {
             foreach ([$viewConfiguration['having'] ?? '', $viewConfiguration['where'] ?? ''] as $sql) {
                 if (preg_match('/(ALTER|CREATE|DROP|RENAME|TRUNCATE|UPDATE|DELETE|SET) /i', $sql, $matches)) {
-                    throw new \InvalidArgumentException('Invalid SQL definition, possible SQL injection?');
+                    throw new InvalidArgumentException('Invalid SQL definition, possible SQL injection?');
                 }
             }
         }
@@ -101,9 +105,9 @@ class ViewAccessor extends AbstractAccessor
      *
      * @return void
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    #[\Override]
+    #[Override]
     public function writeConfiguration($treeStore, ?array $deletedRecords)
     {
         $configuration = $this->convertTreeStoreToConfiguration($treeStore);

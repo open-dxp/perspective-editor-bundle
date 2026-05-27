@@ -9,12 +9,13 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\PerspectiveEditorBundle\Controller;
 
+use Exception;
 use OpenDxp\Bundle\AdminBundle\Security\CsrfProtectionHandler;
 use OpenDxp\Bundle\PerspectiveEditorBundle\Event\ElementTree\IconEvents;
 use OpenDxp\Bundle\PerspectiveEditorBundle\Event\ElementTree\Model\IconAddEvent;
@@ -96,7 +97,7 @@ class PerspectiveController extends UserAwareController
             $this->checkForUniqueElements($treeStore);
 
             $perspectiveAccessor->writeConfiguration($treeStore, $deletedRecords);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $ret['success'] = false;
             $ret['error'] = $e->getMessage();
         }
@@ -120,7 +121,7 @@ class PerspectiveController extends UserAwareController
             $treeStore = json_decode($request->request->getString('data'), true);
             $deletedRecords = json_decode($request->request->getString('deletedRecords'), true);
             $viewAccessor->writeConfiguration($treeStore, $deletedRecords);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $ret = ['success' => false, 'error' => $e->getMessage()];
         }
 
@@ -130,7 +131,7 @@ class PerspectiveController extends UserAwareController
     protected function checkForUniqueElements(array $treeStore): void
     {
         foreach ($treeStore['children'] ?? [] as $perspective) {
-            $elementTree = array_values(array_filter($perspective['children'] ?? [], static fn($entry) => $entry['type'] === 'elementTree' || $entry['type'] === 'elementTreeRight'));
+            $elementTree = array_values(array_filter($perspective['children'] ?? [], static fn ($entry) => $entry['type'] === 'elementTree' || $entry['type'] === 'elementTreeRight'));
 
             if (empty($elementTree)) {
                 return;
@@ -144,10 +145,10 @@ class PerspectiveController extends UserAwareController
             }
 
             foreach (['assets', 'documents', 'objects'] as $type) {
-                $elements = array_values(array_filter($elementTrees, static fn($entry) => $entry['config']['type'] === $type));
+                $elements = array_values(array_filter($elementTrees, static fn ($entry) => $entry['config']['type'] === $type));
 
                 if (count($elements) > 1) {
-                    throw new \Exception('plugin_opendxp_perspectiveeditor_no_unique_treeelements');
+                    throw new Exception('plugin_opendxp_perspectiveeditor_no_unique_treeelements');
                 }
             }
         }
@@ -265,7 +266,7 @@ class PerspectiveController extends UserAwareController
             }
         }
 
-        usort($tree, fn($item1, $item2) => ($item1['config']['sort'] ?? 0) - ($item2['config']['sort'] ?? 0));
+        usort($tree, fn ($item1, $item2) => ($item1['config']['sort'] ?? 0) - ($item2['config']['sort'] ?? 0));
 
         return $tree;
     }
