@@ -130,9 +130,7 @@ class PerspectiveController extends UserAwareController
     protected function checkForUniqueElements(array $treeStore): void
     {
         foreach ($treeStore['children'] ?? [] as $perspective) {
-            $elementTree = array_values(array_filter($perspective['children'] ?? [], static function ($entry) {
-                return $entry['type'] === 'elementTree' || $entry['type'] === 'elementTreeRight';
-            }));
+            $elementTree = array_values(array_filter($perspective['children'] ?? [], static fn($entry) => $entry['type'] === 'elementTree' || $entry['type'] === 'elementTreeRight'));
 
             if (empty($elementTree)) {
                 return;
@@ -146,9 +144,7 @@ class PerspectiveController extends UserAwareController
             }
 
             foreach (['assets', 'documents', 'objects'] as $type) {
-                $elements = array_values(array_filter($elementTrees, static function ($entry) use ($type) {
-                    return $entry['config']['type'] === $type;
-                }));
+                $elements = array_values(array_filter($elementTrees, static fn($entry) => $entry['config']['type'] === $type));
 
                 if (count($elements) > 1) {
                     throw new \Exception('plugin_opendxp_perspectiveeditor_no_unique_treeelements');
@@ -257,7 +253,7 @@ class PerspectiveController extends UserAwareController
             if ($position === ($element['position'] ?? 'left')) {
                 $tree[] = [
                     'id' => $treeHelper->createUuid(),
-                    'text' => preg_replace("/[\-_]/", ' ', $element['type']),
+                    'text' => preg_replace("/[\-_]/", ' ', (string) $element['type']),
                     'type' => 'elementTreeElement',
                     'leaf' => true,
                     'allowDrag' => true,
@@ -269,9 +265,7 @@ class PerspectiveController extends UserAwareController
             }
         }
 
-        usort($tree, function ($item1, $item2) {
-            return ($item1['config']['sort'] ?? 0) - ($item2['config']['sort'] ?? 0);
-        });
+        usort($tree, fn($item1, $item2) => ($item1['config']['sort'] ?? 0) - ($item2['config']['sort'] ?? 0));
 
         return $tree;
     }
@@ -323,7 +317,7 @@ class PerspectiveController extends UserAwareController
 
     protected function createViewEntry(TreeHelper $treeHelper, ?string $viewName = null, ?array $viewConfig = null): array
     {
-        $viewName = $viewName ?? 'new view ' . date('U');
+        $viewName ??= 'new view ' . date('U');
         $disabledClass = '';
         if ($viewConfig) {
             $disabledClass = $viewConfig['writeable'] ? '' : ' ' . $this->disabledCssClass;

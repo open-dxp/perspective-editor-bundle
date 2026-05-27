@@ -28,6 +28,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class OpenDxpPerspectiveEditorExtension extends Extension implements PrependExtensionInterface
 {
+    #[\Override]
     public function getAlias(): string
     {
         return 'opendxp_perspective_editor';
