@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+    name: perspective-editor-bundle
+    description: Perspective Editor community bundle provides a management UI for
+        OpenDXP perspectives.
+spec:
+    type: library
+    lifecycle: production
+    owner: team-opendxp
+    system: opendxp
