@@ -21,6 +21,7 @@ nbproject
 /app/config/parameters.yml
 /build/
 /phpunit.xml
+/.phpunit.cache/
 /web/bundles/
 /web/var/
 
@@ -43,3 +44,7 @@ nbproject
 /.htaccess
 /auth.json
 /config.json
+
+# agent instructions stay local
+/CLAUDE.md
+/.claude/
