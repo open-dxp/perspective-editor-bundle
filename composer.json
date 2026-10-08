@@ -10,24 +10,22 @@
             "*": "dist"
         },
         "allow-plugins": {
+            "pestphp/pest-plugin": true,
             "symfony/runtime": true
         }
     },
     "require": {
         "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
         "open-dxp/admin-bundle": "^1.0",
-        "open-dxp/opendxp": "^1.0",
+        "open-dxp/opendxp": "^1.5",
         "symfony/http-foundation": "^7.4"
     },
     "require-dev": {
-        "symfony/dotenv": "^7.4",
-        "symfony/runtime": "^7.4",
-        "phpunit/phpunit": "^9.5",
+        "open-dxp/test-foundation": "^1.0",
         "phpstan/phpstan": "^2.0",
         "phpstan/phpstan-symfony": "^2.0.14",
-        "codeception/codeception": "^5.3.5",
-        "codeception/module-symfony": "^3.1.1",
-        "codeception/module-asserts": "^2"
+        "symfony/dotenv": "^7.4",
+        "symfony/runtime": "^7.4"
     },
     "autoload": {
         "psr-4": {
@@ -36,11 +34,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "OpenDxp\\Bundle\\PerspectiveEditorBundle\\Tests\\": "tests"
-        },
-        "files": [
-            "kernel/Kernel.php"
-        ]
+            "OpenDxp\\Bundle\\PerspectiveEditorBundle\\Tests\\": "tests/"
+        }
     },
     "extra": {
         "opendxp": {

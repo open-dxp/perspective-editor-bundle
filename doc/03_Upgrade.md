@@ -1,5 +1,9 @@
 # Update Notes
 
+## 1.1.0
+* [CHORE] Replace Codeception with Pest and `open-dxp/test-foundation`
+* [CHORE] Require `open-dxp/opendxp` ^1.5
+
 ## Migrating from `pimcore/perspective-editor:^1.8` to `open-dxp/perspective-editor-bundle`
 * Changed PHP namespace to `OpenDxp\Bundle\PerspectiveEditorBundle`
 * Changed Bundle name to `OpenDxpPerspectiveEditorBundle`
