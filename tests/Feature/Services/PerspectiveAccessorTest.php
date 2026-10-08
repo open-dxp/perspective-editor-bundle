@@ -12,7 +12,7 @@ const BOOK_ICON = '/bundles/opendxpadmin/img/flat-white-icons/book.svg';
 /**
  * @param array<string, mixed> $iconConfig
  *
- * @return array<string, mixed> the tree the editor sends for a perspective named "Catalog"
+ * @return array<string, mixed> the editor tree of the perspective "Catalog"
  */
 function perspectiveTree(array $iconConfig): array
 {

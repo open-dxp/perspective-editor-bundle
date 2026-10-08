@@ -9,9 +9,9 @@ use OpenDxp\Bundle\PerspectiveEditorBundle\Services\ViewAccessor;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 /**
- * @param array<string, mixed> $settings settings the custom view "cars" takes on top of its own
+ * @param array<string, mixed> $settings extra settings of the custom view "cars"
  *
- * @return array<string, mixed> the tree the editor sends for the custom view
+ * @return array<string, mixed> the editor tree of the custom view
  */
 function viewTree(array $settings): array
 {
