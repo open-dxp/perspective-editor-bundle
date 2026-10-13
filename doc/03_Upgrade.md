@@ -1,6 +1,7 @@
 # Update Notes
 
 ## 1.1.0
+* [BUGFIX] `config:dump-reference` and the configuration errors show the key `opendxp_perspective_editor`
 * [CHORE] Replace Codeception with Pest and `open-dxp/test-foundation`
 * [CHORE] Require `open-dxp/opendxp` ^1.5
 
