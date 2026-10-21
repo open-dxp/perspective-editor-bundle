@@ -23,7 +23,7 @@ This bundle provides an editor for OpenDXP to manage custom views and perspectiv
 ## Documentation Overview
 - [Installation & Configuration](./doc/01_Installation.md)
 - [Customize Menu Entry List](./doc/02_Customize_Menu_Entry_List.md)
-- [Upgrade Notes](./doc/03_Upgrade.md)
+- [Migrating to OpenDXP](./doc/03_Migrating_to_OpenDXP.md)
 
 ***
 
