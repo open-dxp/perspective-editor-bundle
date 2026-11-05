@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1
+- [CHORE] Check dependencies, code and commits for security issues
+
 ## 1.1.0
 - [BUGFIX] `config:dump-reference` and the configuration errors show the key `opendxp_perspective_editor`
 - [CHORE] Replace Codeception with Pest and `open-dxp/test-foundation`
